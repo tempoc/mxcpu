@@ -27,6 +27,8 @@ function interpret(program, state) {
     operand    = parseInt(bytes[state.pc + 1], 16) % 256;
     operand2   = parseInt(bytes[state.pc + 2], 16) % 256;
 
+    print([bytes[state.pc], bytes[state.pc+1], bytes[state.pc+2]].join(' '));
+
     switch (operation) {
       // Jumps / Branch
       case 0xB1:
@@ -115,6 +117,8 @@ function interpret(program, state) {
       default:
         throw "Illegal op code `0x" + operation.toString(16) + "' at address `0x" + state.pc.toString(16) + "'";
     }
+
+    print_state(state);
   }
 }
 
